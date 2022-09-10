@@ -1,10 +1,10 @@
 const models = require('../models/');
 
-const region = models.Region;
+const country = models.Country;
 
 exports.findAll = async (req, res) => {
     try {
-        await region.findAll().then(data => {
+        await country.findAll().then(data => {
             res.jsend.success(data)
         })
     } catch (error) {
@@ -14,7 +14,7 @@ exports.findAll = async (req, res) => {
 
 exports.findByPk = async (req, res) => {
     try {
-        let data = await region.findByPk(req.params.id)
+        let data = await country.findByPk(req.params.id)
         data === null ?
             res.jsend.error('Data not found!') :
             res.jsend.success(data)
@@ -25,7 +25,7 @@ exports.findByPk = async (req, res) => {
 
 exports.create = async (req, res) => {
     try {
-        await region.create({
+        await country.create({
             name: req.body.name
         })
         res.jsend.success(res.status)
@@ -36,7 +36,7 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
     try {
-        let data = await region.update({
+        let data = await country.update({
             name: req.body.name
         }, {
             where: {
@@ -53,7 +53,7 @@ exports.update = async (req, res) => {
 
 exports.destroy = async (req, res) => {
     try {
-        let data = await region.destroy({
+        let data = await country.destroy({
             where: {
                 id: req.params.id
             }
