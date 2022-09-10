@@ -6,7 +6,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class Country extends Model {
         static associate(models) {
-
+            this.hasMany(models.Player, { foreignKey: 'country', sourceKey: 'id' })
         }
     }
     Country.init({
