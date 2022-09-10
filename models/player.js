@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             this.belongsTo(models.Country, { foreignKey: 'country', targetKey: 'id' });
             this.hasMany(models.Member, { foreignKey: 'player', sourceKey: 'id' });
+            
             this.addScope('withCountry', {
                 include: [{
                     required: false,

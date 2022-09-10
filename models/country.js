@@ -6,7 +6,22 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class Country extends Model {
         static associate(models) {
-            this.hasMany(models.Player, { foreignKey: 'country', sourceKey: 'id' })
+            this.hasMany(models.Player, { foreignKey: 'country', sourceKey: 'id' });
+
+            this.addScope('withPlayer', {
+                include: [{
+                    required: false,
+                    model: models.Player,
+                    include: [{
+                        required: false,
+                        model: models.Member,
+                        include: [{
+                            required: false,
+                            model: models.Team
+                        }]
+                    }]
+                }]
+            })
         }
     }
     Country.init({

@@ -14,7 +14,7 @@ exports.findAll = async (req, res) => {
 
 exports.findByPk = async (req, res) => {
     try {
-        let data = await country.findByPk(req.params.id)
+        let data = await country.scope('withPlayer').findByPk(req.params.id)
         data === null ?
             res.jsend.error('Data not found!') :
             res.jsend.success(data)
