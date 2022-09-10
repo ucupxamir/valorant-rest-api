@@ -6,7 +6,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class Region extends Model {
         static associate(models) {
-
+            this.hasMany(models.Team, { foreignKey: 'region', sourceKey: 'id' })
         }
     }
     Region.init({

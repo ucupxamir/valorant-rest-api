@@ -29,7 +29,6 @@ module.exports = {
                 }
             },
             status: {
-                allowNull: false,
                 type: Sequelize.ENUM('active', 'former', 'loan'),
                 defaultValue: 'active'
             },

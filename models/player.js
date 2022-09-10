@@ -8,7 +8,8 @@ const Country = require('./country');
 module.exports = (sequelize, DataTypes) => {
     class Player extends Model {
         static associate(models) {
-            this.belongsTo(models.Country, { foreignKey: 'country', targetKey: 'id' })
+            this.belongsTo(models.Country, { foreignKey: 'country', targetKey: 'id' });
+            this.hasMany(models.Member, { foreignKey: 'player', sourceKey: 'id' });
             this.addScope('withCountry', {
                 include: [{
                     required: false,
@@ -17,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
             })
         }
     }
-    
+
     Player.init({
         id: {
             allowNull: false,
@@ -34,7 +35,6 @@ module.exports = (sequelize, DataTypes) => {
             unique: true
         },
         country: {
-            allowNull: false,
             type: Sequelize.UUID,
             references: {
                 model: {

@@ -6,7 +6,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class Member extends Model {
         static associate(models) {
-            
+            this.belongsTo(models.Team, { foreignKey: 'team', targetKey: 'id' });
+            this.belongsTo(models.Player, { foreignKey: 'player', targetKey: 'id' })
         }
     }
     Member.init({
@@ -37,7 +38,6 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
         status: {
-            allowNull: false,
             type: Sequelize.ENUM('active', 'former', 'loan'),
             defaultValue: 'active'
         }

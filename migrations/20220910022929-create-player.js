@@ -17,7 +17,6 @@ module.exports = {
                 unique: true
             },
             country: {
-                allowNull: false,
                 type: Sequelize.UUID,
                 references: {
                     model: {
