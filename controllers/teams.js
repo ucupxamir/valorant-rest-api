@@ -31,19 +31,19 @@ exports.findByPk = async (req, res) => {
 exports.create = async (req, res) => {
     let transaction;
     try {
+
         const [region, created] = await Region.findOrCreate({
             where: {
                 name: req.body.region
             }
+        }).then(async (team, player) => {
+            team = await Team.create({
+                team: req.body.name,
+                region: region.id
+            })
         });
 
         transaction = await sequelize.transaction();
-
-        const team = await Team.create({
-            name: req.body.name,
-            region: region.id
-        }, { transaction });
-
         const player = await Player.findAll({
             where: {
                 nickname: { [Op.in]: req.body.player.split(', ') }
@@ -57,10 +57,14 @@ exports.create = async (req, res) => {
                 team: team.id
             })
         };
-        await Member.bulkCreate(listMember, { transaction });
+        const member = await Member.bulkCreate(listMember, { transaction });
 
-        res.jsend.success(res.status);
-        await transaction.commit()
+        if (member.length < 5) {
+            res.jsend.error('Some player is not found!')
+        } else {
+            res.jsend.success(res.status);
+            await transaction.commit()
+        }
     } catch (error) {
         res.jsend.error(error)
         if (transaction) {

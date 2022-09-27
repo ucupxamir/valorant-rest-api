@@ -10,11 +10,18 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             this.belongsTo(models.Country, { foreignKey: 'country', targetKey: 'id' });
             this.hasMany(models.Member, { foreignKey: 'player', sourceKey: 'id' });
-            
+
             this.addScope('withCountry', {
                 include: [{
                     required: false,
                     model: models.Country
+                }, {
+                    required: false,
+                    model: models.Member,
+                    include: [{
+                        required: false,
+                        model: models.Team
+                    }]
                 }]
             })
         }
@@ -36,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
             unique: true
         },
         country: {
+            allowNull: false,
             type: Sequelize.UUID,
             references: {
                 model: {

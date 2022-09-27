@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
                         }]
                     }]
                 }]
-            })           
+            })
         }
     }
     Team.init({
