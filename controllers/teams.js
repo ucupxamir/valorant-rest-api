@@ -1,10 +1,10 @@
 const { sequelize } = require('../models/');
 const models = require('../models/');
-const { Op } = require('sequelize')
+const { Op } = require('sequelize');
 
-const Team = models.Team;
 const Region = models.Region;
 const Player = models.Player;
+const Team = models.Team;
 const Member = models.Member;
 
 exports.findAll = async (req, res) => {
@@ -31,30 +31,29 @@ exports.findByPk = async (req, res) => {
 exports.create = async (req, res) => {
     let transaction;
     try {
-
         const [region, created] = await Region.findOrCreate({
             where: {
                 name: req.body.region
             }
-        }).then(async (team, player) => {
-            team = await Team.create({
-                team: req.body.name,
-                region: region.id
-            })
         });
 
         transaction = await sequelize.transaction();
+        const saveTeam = await Team.create({
+            name: req.body.name,
+            region: region.id
+        }, { transaction });
+
         const player = await Player.findAll({
             where: {
                 nickname: { [Op.in]: req.body.player.split(', ') }
             }
-        }, { transaction })
+        }, { transaction });
 
         let listMember = [];
         for (let i = 0; i < player.length; i++) {
             listMember.push({
                 player: player[i].id,
-                team: team.id
+                team: saveTeam.id
             })
         };
         const member = await Member.bulkCreate(listMember, { transaction });
