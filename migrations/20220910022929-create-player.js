@@ -17,14 +17,7 @@ module.exports = {
                 unique: true
             },
             country: {
-                allowNull: false,
-                type: Sequelize.UUID,
-                references: {
-                    model: {
-                        tableName: 'm_countries',
-                        key: 'id'
-                    }
-                }
+                type: Sequelize.STRING
             },
             createdAt: {
                 allowNull: false,

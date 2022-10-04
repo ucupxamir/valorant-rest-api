@@ -2,8 +2,8 @@ const router = require('express').Router();
 
 const player = require('../../controllers/players');
 
-router.get('/', player.findAll);
-router.get('/:id', player.findByPk);
+router.get('/', player.getAll);
+router.get('/:id', player.getById);
 router.post('/', player.create);
 router.patch('/:id', player.update);
 router.delete('/:id', player.destroy);

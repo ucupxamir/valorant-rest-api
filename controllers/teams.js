@@ -2,7 +2,6 @@ const { sequelize } = require('../models/');
 const models = require('../models/');
 const { Op } = require('sequelize');
 
-const Region = models.Region;
 const Player = models.Player;
 const Team = models.Team;
 const Member = models.Member;
@@ -31,34 +30,28 @@ exports.findByPk = async (req, res) => {
 exports.create = async (req, res) => {
     let transaction;
     try {
-        const [region, created] = await Region.findOrCreate({
-            where: {
-                name: req.body.region
-            }
-        });
-
         transaction = await sequelize.transaction();
         const saveTeam = await Team.create({
             name: req.body.name,
-            region: region.id
+            region: req.body.region
         }, { transaction });
 
-        const player = await Player.findAll({
+        const getPlayers = await Player.findAll({
             where: {
                 nickname: { [Op.in]: req.body.player.split(', ') }
             }
         }, { transaction });
 
         let listMember = [];
-        for (let i = 0; i < player.length; i++) {
+        for (let i = 0; i < getPlayers.length; i++) {
             listMember.push({
-                player: player[i].id,
+                player: getPlayers[i].id,
                 team: saveTeam.id
             })
         };
-        const member = await Member.bulkCreate(listMember, { transaction });
+        const saveMember = await Member.bulkCreate(listMember, { transaction });
 
-        if (member.length < 5) {
+        if (saveMember.length < 5) {
             res.jsend.error('Some player is not found!')
         } else {
             res.jsend.success(res.status);

@@ -8,24 +8,6 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             this.belongsTo(models.Team, { foreignKey: 'team', targetKey: 'id' });
             this.belongsTo(models.Player, { foreignKey: 'player', targetKey: 'id' });
-
-            this.addScope('withDetails', {
-                include: [{
-                    required: false,
-                    model: models.Player,
-                    include: [{
-                        required: false,
-                        model: models.Country
-                    }]
-                }, {
-                    required: false,
-                    model: models.Team,
-                    include: [{
-                        required: false,
-                        model: models.Region
-                    }]
-                }]
-            })
         }
     }
     Member.init({

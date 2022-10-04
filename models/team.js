@@ -6,26 +6,19 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class Team extends Model {
         static associate(models) {
-            this.belongsTo(models.Region, { foreignKey: 'region', targetKey: 'id' });
-            this.hasMany(models.Member, { foreignKey: 'team', sourceKey: 'id'})
+            this.hasMany(models.Member, { foreignKey: 'team', sourceKey: 'id'});
 
             this.addScope('withDetails', {
                 include: [{
                     required: false,
-                    model: models.Region
-                }, {
-                    required: false,
                     model: models.Member,
+                    attributes: {exclude: ['team', 'player']},
                     include: [{
                         required: false,
-                        model: models.Player,
-                        include: [{
-                            required: false,
-                            model: models.Country
-                        }]
+                        model: models.Player
                     }]
                 }]
-            })
+            });
         }
     }
     Team.init({
