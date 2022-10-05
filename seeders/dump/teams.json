@@ -1,0 +1,42 @@
+[
+	{
+		"id" : "285e0ec0-878e-4f0b-a2c6-8bda960d070c",
+		"name" : "XSET",
+		"region" : "North America",
+		"status" : "active",
+		"createdAt" : "2022-10-05 21:01:45",
+		"updatedAt" : "2022-10-05 21:01:45"
+	},
+	{
+		"id" : "3cc11d74-421c-403b-82be-8aada21ed0d4",
+		"name" : "OpTic Gaming",
+		"region" : "North America",
+		"status" : "active",
+		"createdAt" : "2022-10-05 09:50:09",
+		"updatedAt" : "2022-10-05 09:50:09"
+	},
+	{
+		"id" : "4a35ba08-2dfd-4259-a705-8d9d9cf1d454",
+		"name" : "Fnatic",
+		"region" : "EMEA",
+		"status" : "active",
+		"createdAt" : "2022-10-05 21:02:48",
+		"updatedAt" : "2022-10-05 21:02:48"
+	},
+	{
+		"id" : "ace0b98e-96bb-46e6-a522-dc00f18cd0d4",
+		"name" : "LOUD",
+		"region" : "Brazil",
+		"status" : "active",
+		"createdAt" : "2022-10-05 10:06:56",
+		"updatedAt" : "2022-10-05 18:38:38"
+	},
+	{
+		"id" : "de0956dc-b0fd-44dd-b9f1-42f0b7059630",
+		"name" : "FunPlus Phoenix",
+		"region" : "EMEA",
+		"status" : "active",
+		"createdAt" : "2022-10-05 21:02:21",
+		"updatedAt" : "2022-10-05 21:02:21"
+	}
+]

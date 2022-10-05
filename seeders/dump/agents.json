@@ -1,0 +1,135 @@
+[
+	{
+		"id" : "599b5e18-6cb5-44cc-bea4-10fcb22da5ff",
+		"name" : "Neon",
+		"role" : "Duelist",
+		"createdAt" : "2022-10-05 10:14:22",
+		"updatedAt" : "2022-10-05 10:14:22"
+	},
+	{
+		"id" : "600da228-9dea-4687-a17a-703f4ef69d3f",
+		"name" : "Chamber",
+		"role" : "Sentinel",
+		"createdAt" : "2022-10-05 10:15:57",
+		"updatedAt" : "2022-10-05 10:15:57"
+	},
+	{
+		"id" : "67590aa9-5fd0-4fe0-a603-199c8b72d4d5",
+		"name" : "Breach",
+		"role" : "Initiator",
+		"createdAt" : "2022-10-05 10:15:14",
+		"updatedAt" : "2022-10-05 10:15:14"
+	},
+	{
+		"id" : "8073da5f-e80d-42ed-9bef-a5dbbad10f1c",
+		"name" : "Brimstone",
+		"role" : "Controller",
+		"createdAt" : "2022-10-05 10:16:37",
+		"updatedAt" : "2022-10-05 10:16:37"
+	},
+	{
+		"id" : "85c00bab-2ec5-4ec7-a620-2d749804368b",
+		"name" : "Killjoy",
+		"role" : "Sentinel",
+		"createdAt" : "2022-10-05 10:16:10",
+		"updatedAt" : "2022-10-05 10:16:10"
+	},
+	{
+		"id" : "8a501b40-4218-40fd-a1ec-c4cad1c6270c",
+		"name" : "Sage",
+		"role" : "Sentinel",
+		"createdAt" : "2022-10-05 10:16:16",
+		"updatedAt" : "2022-10-05 10:16:16"
+	},
+	{
+		"id" : "8aa9f1b2-0579-4c26-b8a9-6d7e18cba204",
+		"name" : "Astra",
+		"role" : "Controller",
+		"createdAt" : "2022-10-05 10:16:29",
+		"updatedAt" : "2022-10-05 10:16:29"
+	},
+	{
+		"id" : "8d9cabd4-b40f-4473-ac49-2a9ef940e44b",
+		"name" : "Cypher",
+		"role" : "Sentinel",
+		"createdAt" : "2022-10-05 10:16:04",
+		"updatedAt" : "2022-10-05 10:16:04"
+	},
+	{
+		"id" : "9be93a0f-a154-4f20-8c67-d34934efbb19",
+		"name" : "Phoenix",
+		"role" : "Duelist",
+		"createdAt" : "2022-10-05 10:14:28",
+		"updatedAt" : "2022-10-05 10:14:28"
+	},
+	{
+		"id" : "9faa865f-49f0-40e3-b1a3-579bb2f79df8",
+		"name" : "Skye",
+		"role" : "Initiator",
+		"createdAt" : "2022-10-05 10:15:41",
+		"updatedAt" : "2022-10-05 10:15:41"
+	},
+	{
+		"id" : "a562bc61-8cbf-4412-812c-1ed65fd69043",
+		"name" : "KAY/O",
+		"role" : "Initiator",
+		"createdAt" : "2022-10-05 10:15:35",
+		"updatedAt" : "2022-10-05 10:15:35"
+	},
+	{
+		"id" : "a8b10777-dbf3-4ec6-8e51-4e1088718003",
+		"name" : "Reyna",
+		"role" : "Duelist",
+		"createdAt" : "2022-10-05 10:14:46",
+		"updatedAt" : "2022-10-05 10:14:46"
+	},
+	{
+		"id" : "b6650fa9-89ca-4754-9baf-0c8afadfbaca",
+		"name" : "Yoru",
+		"role" : "Duelist",
+		"createdAt" : "2022-10-05 10:14:51",
+		"updatedAt" : "2022-10-05 10:14:51"
+	},
+	{
+		"id" : "d1331212-b5df-4273-beff-fb8672a55812",
+		"name" : "Fade",
+		"role" : "Initiator",
+		"createdAt" : "2022-10-05 10:15:28",
+		"updatedAt" : "2022-10-05 10:15:28"
+	},
+	{
+		"id" : "d7562d34-fe2d-41cc-8775-f55e4e08683a",
+		"name" : "Raze",
+		"role" : "Duelist",
+		"createdAt" : "2022-10-05 10:14:36",
+		"updatedAt" : "2022-10-05 10:14:36"
+	},
+	{
+		"id" : "e1ec9d88-b652-4f2f-bae3-a6f6f457c526",
+		"name" : "Sova",
+		"role" : "Initiator",
+		"createdAt" : "2022-10-05 10:15:45",
+		"updatedAt" : "2022-10-05 10:15:45"
+	},
+	{
+		"id" : "f3b09a27-469d-44f3-ba30-098ea47af261",
+		"name" : "Omen",
+		"role" : "Controller",
+		"createdAt" : "2022-10-05 10:16:41",
+		"updatedAt" : "2022-10-05 10:16:41"
+	},
+	{
+		"id" : "f5ee7692-b2ba-4f04-9d94-8b5a84ffb090",
+		"name" : "Viper",
+		"role" : "Controller",
+		"createdAt" : "2022-10-05 10:16:47",
+		"updatedAt" : "2022-10-05 10:16:47"
+	},
+	{
+		"id" : "f7c51a79-439d-498a-83b2-4a226efce71c",
+		"name" : "Jett",
+		"role" : "Duelist",
+		"createdAt" : "2022-10-05 10:13:40",
+		"updatedAt" : "2022-10-05 10:13:40"
+	}
+]

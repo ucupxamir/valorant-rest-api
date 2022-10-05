@@ -18,18 +18,17 @@ module.exports = {
                     }
                 }
             },
-            player: {
+            member: {
                 allowNull: false,
                 type: Sequelize.UUID,
                 references: {
                     model: {
-                        tableName: 'm_players',
+                        tableName: 'm_members',
                         key: 'id'
                     }
                 }
             },
             agent: {
-                allowNull: false,
                 type: Sequelize.UUID,
                 references: {
                     model: {

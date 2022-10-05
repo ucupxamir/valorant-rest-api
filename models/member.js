@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             this.belongsTo(models.Team, { foreignKey: 'team', targetKey: 'id' });
             this.belongsTo(models.Player, { foreignKey: 'player', targetKey: 'id' });
+            this.hasMany(models.Scoreboard, { foreignKey: 'member', sourceKey: 'id' })
 
             this.beforeSave(async (user, option) => {
                 const existingData = await this.findOne({
@@ -24,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
                     throw new Error(`Player is active on another team!`)
             })
 
-          
+
         }
     }
 

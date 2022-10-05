@@ -1,0 +1,9 @@
+[
+  "20221005213658-seed_players.js",
+  "20221005213714-seed_teams.js",
+  "20221005213724-seed_members.js",
+  "20221005213730-seed_maps.js",
+  "20221005213734-seed_agents.js",
+  "20221005213741-seed_tournaments.js",
+  "20221005213752-seed_participants.js"
+]

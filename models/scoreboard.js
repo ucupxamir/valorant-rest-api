@@ -6,7 +6,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class Scoreboard extends Model {
         static associate(models) {
-
+            this.belongsTo(models.Score, { foreignKey: 'score', targetKey: 'id'});
+            this.belongsTo(models.Member, { foreignKey: 'member', targetKey: 'id'})
         }
     }
     Scoreboard.init({
@@ -26,18 +27,17 @@ module.exports = (sequelize, DataTypes) => {
                 }
             }
         },
-        player: {
+        member: {
             allowNull: false,
             type: Sequelize.UUID,
             references: {
                 model: {
-                    tableName: 'm_players',
+                    tableName: 'm_members',
                     key: 'id'
                 }
             }
         },
         agent: {
-            allowNull: false,
             type: Sequelize.UUID,
             references: {
                 model: {

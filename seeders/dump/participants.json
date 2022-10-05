@@ -1,0 +1,16 @@
+[
+	{
+		"id" : "544da994-fb34-4112-afb7-a3060e3fbcc5",
+		"tournament" : "a990a9e6-fe9e-4b3c-90bd-994b5d9a0506",
+		"team" : "3cc11d74-421c-403b-82be-8aada21ed0d4",
+		"createdAt" : "2022-10-06 04:12:00",
+		"updatedAt" : "2022-10-06 04:12:00"
+	},
+	{
+		"id" : "91768c69-9dd9-4fc4-a046-62a252b7d37a",
+		"tournament" : "a990a9e6-fe9e-4b3c-90bd-994b5d9a0506",
+		"team" : "ace0b98e-96bb-46e6-a522-dc00f18cd0d4",
+		"createdAt" : "2022-10-06 04:12:00",
+		"updatedAt" : "2022-10-06 04:12:00"
+	}
+]

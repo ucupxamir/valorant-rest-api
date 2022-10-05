@@ -8,6 +8,16 @@ module.exports = {
                 type: Sequelize.UUID,
                 defaultValue: Sequelize.UUIDV4
             },
+            tournament: {
+                allowNull: false,
+                type: Sequelize.UUID,
+                references: {
+                    model: {
+                        tableName: 'm_tournaments',
+                        key: 'id'
+                    }
+                }
+            },
             date: {
                 allowNull: false,
                 type: Sequelize.DATE

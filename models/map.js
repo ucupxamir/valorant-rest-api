@@ -6,7 +6,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class Map extends Model {
         static associate(models) {
-
+            this.hasMany(models.Match, { foreignKey: 'map', sourceKey: 'id' });
         }
     }
     Map.init({

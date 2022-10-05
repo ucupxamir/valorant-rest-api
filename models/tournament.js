@@ -6,7 +6,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class Tournament extends Model {
         static associate(models) {
-            this.hasMany(models.Participant, { foreignKey: 'tournament', sourceKey: 'id'});
+            this.hasMany(models.Participant, { foreignKey: 'tournament', sourceKey: 'id' });
+            this.hasMany(models.Match, { foreignKey: 'tournament', sourceKey: 'id' });
 
             this.addScope('withDetails', {
                 include: [{
@@ -30,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         name: {
             allowNull: false,
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            unique: true
         },
         location: {
             type: Sequelize.STRING
