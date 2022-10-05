@@ -55,7 +55,7 @@ exports.update = async (req, res) => {
     }
 };
 
-exports.destroy = async (req, res) => {
+exports.delete = async (req, res) => {
     try {
         let data = await player.destroy({
             where: {

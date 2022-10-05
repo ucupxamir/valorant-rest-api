@@ -5,5 +5,6 @@ router.use('/teams', require('./teams'));
 router.use('/members', require('./members'));
 router.use('/tournaments', require('./tournaments'));
 router.use('/maps', require('./maps'));
+router.use('/agents', require('./agents'));
 
 module.exports = router;
