@@ -6,13 +6,25 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class Team extends Model {
         static associate(models) {
-            this.hasMany(models.Member, { foreignKey: 'team', sourceKey: 'id'});
+            this.hasMany(models.Member, { foreignKey: 'team', sourceKey: 'id' });
 
-            this.addScope('withDetails', {
+            this.beforeSave(async (user, options) => {
+                const existingData = await this.findOne({
+                    where: {
+                        name: user.name,
+                        region: user.region
+                    }
+                })
+
+                if (existingData)
+                    throw new Error(`Team already exist!`)
+            })
+
+            this.addScope('withMembers', {
                 include: [{
-                    required: false,
+                    required: true,
                     model: models.Member,
-                    attributes: {exclude: ['team', 'player']},
+                    attributes: { exclude: ['team', 'player'] },
                     include: [{
                         required: false,
                         model: models.Player
@@ -21,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
             });
         }
     }
+
     Team.init({
         id: {
             allowNull: false,

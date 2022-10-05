@@ -8,6 +8,19 @@ module.exports = (sequelize, DataTypes) => {
     class Player extends Model {
         static associate(models) {
             this.hasMany(models.Member, { foreignKey: 'player', sourceKey: 'id' });
+
+            this.beforeSave(async (user, option) => {
+                const existingData = await this.findOne({
+                    where: {
+                        fullname: user.fullname,
+                        nickname: user.nickname,
+                        country: user.country
+                    }
+                })
+
+                if (existingData)
+                    throw new Error(`Player already exist!`)
+            })
         }
     }
 

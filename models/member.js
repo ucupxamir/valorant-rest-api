@@ -3,13 +3,31 @@ const {
     Model,
     Sequelize
 } = require('sequelize');
+const models = require('./');
+const Team = models.Team
+
 module.exports = (sequelize, DataTypes) => {
     class Member extends Model {
         static associate(models) {
             this.belongsTo(models.Team, { foreignKey: 'team', targetKey: 'id' });
             this.belongsTo(models.Player, { foreignKey: 'player', targetKey: 'id' });
+
+            this.beforeSave(async (user, option) => {
+                const existingData = await this.findOne({
+                    where: {
+                        player: user.player,
+                        status: 'active'
+                    }
+                })
+
+                if (existingData)
+                    throw new Error(`Player is active on another team!`)
+            })
+
+          
         }
     }
+
     Member.init({
         id: {
             allowNull: false,

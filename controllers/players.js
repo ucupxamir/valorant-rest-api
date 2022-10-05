@@ -54,18 +54,3 @@ exports.update = async (req, res) => {
         res.jsend.error(error)
     }
 };
-
-exports.delete = async (req, res) => {
-    try {
-        let data = await player.destroy({
-            where: {
-                id: req.params.id
-            }
-        });
-        data === 0 ?
-            res.jsend.error('Data not found!') :
-            res.jsend.success(res.status)
-    } catch (error) {
-        res.jsend.error(error)
-    }
-};

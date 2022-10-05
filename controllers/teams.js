@@ -17,10 +17,28 @@ exports.findAll = async (req, res) => {
 
 exports.findByPk = async (req, res) => {
     try {
-        let data = await Team.scope('withDetails').findByPk(req.params.id)
-        data === null ?
-            res.jsend.error('Data not found!') :
-            res.jsend.success(data)
+        let data = await Team.scope('withMembers').findByPk(req.params.id)
+        let activeMembers = [];
+        let formerMembers = [];
+        for (let i = 0; i < data.Members.length; i++) {
+            if (data.Members[i].status == 'active' || data.Members[i].status == 'loan') {
+                activeMembers.push(data.Members[i])
+            } else {
+                formerMembers.push(data.Members[i])
+            }
+        }
+        let result = {
+            id: data.id,
+            name: data.name,
+            region: data.region,
+            status: data.status,
+            createdAt: data.createdAt,
+            updatedAt: data.updatedAt,
+            ActiveMembers: activeMembers,
+            FormerMembers: formerMembers
+        };
+
+        res.jsend.success(result)
     } catch (error) {
         res.jsend.error(error)
     }
@@ -61,5 +79,24 @@ exports.create = async (req, res) => {
         if (transaction) {
             await transaction.rollback()
         }
+    }
+}
+
+exports.update = async (req, res) => {
+    try {
+        let data = await Team.update({
+            name: req.body.name,
+            region: req.body.region,
+            status: req.body.status
+        }, {
+            where: {
+                id: req.params.id
+            }
+        })
+        data[0] === 0 ?
+            res.jsend.error(`Data not found!`) :
+            res.jsend.success(res.status)
+    } catch (error) {
+        res.jsend.error(error)
     }
 }
