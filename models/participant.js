@@ -6,7 +6,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class Participant extends Model {
         static associate(models) {
-
+            this.belongsTo(models.Tournament, { foreignKey: 'tournament', targetKey: 'id' });
+            this.belongsTo(models.Team, { foreignKey: 'team', targetKey: 'id' });
         }
     }
     Participant.init({

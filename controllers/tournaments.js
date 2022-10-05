@@ -15,6 +15,15 @@ exports.getAll = async (req, res) => {
     }
 }
 
+exports.getById = async (req, res) => {
+    try {
+        let data = await Tournament.scope('withDetails').findByPk(req.params.id);
+        res.jsend.success(data);
+    } catch (error) {
+        res.jsend.error(error)
+    }
+}
+
 exports.create = async (req, res) => {
     let transaction;
     try {
@@ -30,11 +39,13 @@ exports.create = async (req, res) => {
         let inputParticipants = req.body.participants.split(', ');
 
         let getTeam = await Team.findAll({
-            where: { [Op.in]: inputParticipants }
+            where: { 
+                name: inputParticipants
+            }
         }, { transaction });
 
         let participants = [];
-        for (let i = 0; i < inputParticipants.length; i++) {
+        for (let i = 0; i < getTeam.length; i++) {
             participants.push({
                 tournament: saveTournament.id,
                 team: getTeam[i].id

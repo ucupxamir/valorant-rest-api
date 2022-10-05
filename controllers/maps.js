@@ -2,7 +2,7 @@ const models = require('../models/');
 
 const Maps = models.Map;
 
-exports.findAll = async (req, res) => {
+exports.getAll = async (req, res) => {
     try {
         let data = await Maps.findAll();
         res.jsend.success(data)
@@ -33,21 +33,6 @@ exports.update = async (req, res) => {
             }
         });
         data[0] == 0 ?
-            res.jsend.error('Data not found!') :
-            res.jsend.success(res.status)
-    } catch (error) {
-        res.jsend.error(error)
-    }
-}
-
-exports.delete = async (req, res) => {
-    try {
-        let data = await Maps.destroy({
-            where: {
-                id: req.params.id
-            }
-        });
-        data === 0 ?
             res.jsend.error('Data not found!') :
             res.jsend.success(res.status)
     } catch (error) {

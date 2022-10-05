@@ -6,7 +6,19 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class Tournament extends Model {
         static associate(models) {
+            this.hasMany(models.Participant, { foreignKey: 'tournament', sourceKey: 'id'});
 
+            this.addScope('withDetails', {
+                include: [{
+                    required: false,
+                    model: models.Participant,
+                    attributes: ['id'],
+                    include: [{
+                        required: true,
+                        model: models.Team
+                    }]
+                }]
+            })
         }
     }
     Tournament.init({

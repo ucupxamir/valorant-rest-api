@@ -2,8 +2,8 @@ const router = require('express').Router();
 
 const team = require('../../controllers/teams');
 
-router.get('/', team.findAll);
-router.get('/:id', team.findByPk);
+router.get('/', team.getAll);
+router.get('/:id', team.getById);
 router.post('/', team.create);
 router.patch('/:id', team.update);
 

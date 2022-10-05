@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     class Team extends Model {
         static associate(models) {
             this.hasMany(models.Member, { foreignKey: 'team', sourceKey: 'id' });
-
+            this.hasMany(models.Participant, { foreignKey: 'team', sourceKey: 'id' });
+            
             this.beforeSave(async (user, options) => {
                 const existingData = await this.findOne({
                     where: {

@@ -5,7 +5,7 @@ const Player = models.Player;
 const Team = models.Team;
 const Member = models.Member;
 
-exports.findAll = async (req, res) => {
+exports.getAll = async (req, res) => {
     try {
         await Team.findAll().then(data => {
             res.jsend.success(data)
@@ -15,7 +15,7 @@ exports.findAll = async (req, res) => {
     }
 };
 
-exports.findByPk = async (req, res) => {
+exports.getById = async (req, res) => {
     try {
         let data = await Team.scope('withMembers').findByPk(req.params.id)
         let activeMembers = [];
