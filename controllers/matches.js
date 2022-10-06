@@ -37,7 +37,11 @@ exports.create = async (req, res) => {
             where: {
                 name: req.body.tournament
             }
-        }, { transaction })
+        }, { transaction });
+
+        if (!getTournament) {
+            throw new Error(`Tournament not found!`)
+        }
 
         let getMap = await Map.findOne({
             where: {
@@ -45,13 +49,23 @@ exports.create = async (req, res) => {
             }
         }, { transaction });
 
-        let inputTeams = req.body.team.split(', ')
+        if (!getMap) {
+            throw new Error(`Map not found!`)
+        }
+
+        let inputTeams = req.body.team.split(', ');
 
         let getTeams = await Team.findAll({
             where: {
                 name: inputTeams
             }
         }, { transaction });
+        
+        if (getTeams.length > 2) {
+            throw new Error(`One match only has two participants`)
+        } else if (getTeams.length < 2) {
+            throw new Error(`One match must have two participants`)
+        }
 
         let teamsId = [];
         for (let i = 0; i < getTeams.length; i++) {
@@ -64,6 +78,10 @@ exports.create = async (req, res) => {
                 tournament: getTournament.id
             }
         }, { transaction });
+
+        if (getParticipants.length != 2) {
+            throw new Error(`Some team has not participate on this tournament`)
+        }
 
         let getMembers1 = await Member.findAll({
             where: {
@@ -79,15 +97,15 @@ exports.create = async (req, res) => {
             }
         }, { transaction });
 
+        if (getMembers1.length != 5 || getMembers2.length != 5) {
+            throw new Error(`Some member not found!`)
+        }
+
         let saveMatch = await Match.create({
             tournament: getTournament.id,
             date: req.body.date,
             map: getMap.id
         }, { transaction });
-
-        // if (getMap === 0 || getTournament === 0) {
-        //     res.jsend.error(`Map or Tournament not found!`)
-        // };
 
         let scores = [];
         for (let i = 0; i < inputTeams.length; i++) {
