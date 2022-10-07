@@ -54,7 +54,7 @@ exports.create = async (req, res) => {
             region: req.body.region
         }, { transaction })
 
-        let inputPlayers = req.body.player.split(', ');
+        let inputPlayers = req.body.players.split(', ');
         let players = [];
         for (let i = 0; i < inputPlayers.length; i++) {
             players.push({

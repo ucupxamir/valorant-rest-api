@@ -9,6 +9,19 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             this.hasMany(models.Member, { foreignKey: 'player', sourceKey: 'id' });
 
+            this.addScope('withDetails', {
+                include: [{
+                    required: false,
+                    model: models.Member,
+                    attributes: ['id', 'status'],
+                    include: {
+                        required: false,
+                        model: models.Team,
+                        attributes: ['id', 'name']
+                    }
+                }]
+            })
+
             this.beforeSave(async (user, option) => {
                 const existingData = await this.findOne({
                     where: {
@@ -52,6 +65,10 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         sequelize,
         tableName: 'm_players',
+        name: {
+            plural: 'Players',
+            singular: 'Player'
+        }
     });
     return Player;
 };

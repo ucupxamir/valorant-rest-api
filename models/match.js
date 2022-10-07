@@ -12,50 +12,60 @@ module.exports = (sequelize, DataTypes) => {
             this.belongsTo(models.Map, { foreignKey: 'map', targetKey: 'id' });
 
             this.addScope('withDetails', {
-                include: [{
-                    required: false,
-                    model: models.Map,
-                    attributes: ['id', 'name']
-                },
-                {
-                    required: false,
-                    model: models.Tournament
-                }, {
-                    required: false,
-                    model: models.Score,
-                    attributes: ['id', 'score'],
-                    include: [{
+                include: [
+                    {
                         required: false,
-                        model: models.Participant,
-                        attributes: ['id'],
-                        include: [{
-                            required: true,
-                            model: models.Team
-                        }]
-                    }, {
+                        model: models.Map,
+                        attributes: ['id', 'name']
+                    },
+                    {
                         required: false,
-                        model: models.Scoreboard,
-                        attributes: {exclude: ['score', 'member', 'agent']},
-                        include: [{
-                            required: false,
-                            model: models.Agent
-                        }],
-                        include: [{
-                            required: false,
-                            model: models.Member,
-                            attributes: ['id'],
-                            include: [{
-                                required: true,
-                                model: models.Player,
-                                attributes: ['id', 'nickname']
-                            }]
-                        }]
-                    }]
-                }]
+                        model: models.Tournament
+                    },
+                    {
+                        required: false,
+                        model: models.Score,
+                        attributes: ['id', 'score'],
+                        include: [
+                            {
+                                required: false,
+                                model: models.Participant,
+                                attributes: ['id'],
+                                include: [{
+                                    required: true,
+                                    model: models.Team
+                                }]
+                            },
+                            {
+                                required: false,
+                                model: models.Scoreboard,
+                                attributes: { exclude: ['score', 'member', 'agent'] },
+                                include: [
+                                    {
+                                        required: false,
+                                        model: models.Agent
+                                    },
+                                    {
+                                        required: false,
+                                        model: models.Member,
+                                        attributes: ['id'],
+                                        include: [
+                                            {
+                                                required: true,
+                                                model: models.Player,
+                                                attributes: ['id', 'nickname']
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
             })
         }
     }
-    
+
     Match.init({
         id: {
             allowNull: false,

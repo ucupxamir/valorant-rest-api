@@ -6,7 +6,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class Agent extends Model {
         static associate(models) {
-
+            this.hasMany(models.Scoreboard, { foreignKey: 'agent', sourceKey: 'id' });
         }
     }
     Agent.init({

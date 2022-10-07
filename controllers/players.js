@@ -14,7 +14,7 @@ exports.getAll = async (req, res) => {
 
 exports.getById = async (req, res) => {
     try {
-        let data = await Player.findByPk(req.params.id)
+        let data = await Player.scope('withDetails').findByPk(req.params.id)
         data === null ?
             res.jsend.error('Data not found!') :
             res.jsend.success(data)

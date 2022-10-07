@@ -7,5 +7,6 @@ router.use('/tournaments', require('./tournaments'));
 router.use('/maps', require('./maps'));
 router.use('/agents', require('./agents'));
 router.use('/matches', require('./matches'));
+router.use('/scoreboards', require('./scoreboards'));
 
 module.exports = router;
