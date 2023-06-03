@@ -51,7 +51,10 @@ class AgentService {
         let t = await sequelize.transaction();
         try {
             const existingData = await AgentRepository.findAll({
-                where: data
+                where: {
+                    name: data.name,
+                    role: data.role
+                }
             }, { transaction: t });
 
             if (existingData[0] && data.id !== existingData[0].id) throw new Error('Agent already exist.');
