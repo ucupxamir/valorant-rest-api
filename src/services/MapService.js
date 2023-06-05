@@ -62,7 +62,7 @@ class MapService {
 
             if (!existingMap) throw new Error('Map not found.');
 
-            const map = await MapRepository.update(data);
+            const map = await MapRepository.update(data, { transaction: t });
 
             await t.commit();
             return map;

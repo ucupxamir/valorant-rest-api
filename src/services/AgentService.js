@@ -63,7 +63,7 @@ class AgentService {
 
             if (!existingAgent) throw new Error('Agent not found.');
 
-            const agent = await AgentRepository.update(data);
+            const agent = await AgentRepository.update(data, { transaction: t });
 
             await t.commit();
             return agent;
